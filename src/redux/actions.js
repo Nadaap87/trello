@@ -11,6 +11,11 @@ export const editColumn = (payload) => ({
 });
 
 export const deleteColumn = (payload) => ({
-  type: types.DELETE_COLOUMN,
+  type: types.DELETE_COLUMN,
+  payload,
+});
+
+export const onDragEnd = (payload) => ({
+  type: types.ON_DRAG_END,
   payload,
 });

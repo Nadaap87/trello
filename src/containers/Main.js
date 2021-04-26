@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
+import * as actions from "../redux/actions";
 import Board from "../components/Board";
 
 const useStyles = makeStyles((theme) => ({
@@ -13,11 +14,24 @@ const useStyles = makeStyles((theme) => ({
 
 const Main = () => {
   const classes = useStyles();
-  const { currentBoard } = useSelector((state) => state.app);
+  const dispatch = useDispatch();
+
+  const { boards } = useSelector((state) => state.app);
+
+  // NOT HADNLING BOARDS - DEFAULT IS INDEX 0
+  const currentBoard = boards[0];
+
+  const onDragEndHandler = (result) => {
+    result.destination && dispatch(actions.onDragEnd(result));
+  };
 
   return (
     <main className={classes.main}>
-      <Board id={currentBoard.id} columns={currentBoard.columns} />
+      <Board
+        id={currentBoard.id}
+        columns={currentBoard.columns}
+        onDragEndHandler={onDragEndHandler}
+      />
     </main>
   );
 };

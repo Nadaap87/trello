@@ -4,7 +4,7 @@ const LOCALSTORAGE_KEY = "trello ¯_(ツ)_/¯";
 export const initializeState = () => {
   const newBoard = createBoard();
 
-  return { boards: [newBoard], currentBoard: newBoard };
+  return { boards: [newBoard] };
 };
 
 const createBoard = () => ({

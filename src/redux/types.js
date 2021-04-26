@@ -1,7 +1,9 @@
-export const ADD_COLUMN = "add_column";
-export const EDIT_COLUMN = "edit_column";
-export const DELETE_COLOUMN = "delete_column";
+export const ADD_COLUMN = "ADD_COLUMN";
+export const EDIT_COLUMN = "EDIT_COLUMN";
+export const DELETE_COLUMN = "DELETE_COLUMN";
 
-export const ADD_CARD = "add_card";
-export const EDIT_CARD = "edit_card";
-export const DELETE_CARD = "delete_card";
+export const ADD_CARD = "ADD_CARD";
+export const EDIT_CARD = "EDIT_CARD";
+export const DELETE_CARD = "DELETE_CARD";
+
+export const ON_DRAG_END = "ON_DRAG_END";

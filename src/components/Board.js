@@ -12,12 +12,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Board = ({ id, columns }) => {
+const Board = ({ id, columns, onDragEndHandler }) => {
   const classes = useStyles();
-
-  const onDragEndHandler = (result) => {
-    result.destination && console.log(result);
-  };
 
   return (
     <DragDropContext onDragEnd={onDragEndHandler}>
