@@ -1,33 +1,40 @@
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { makeStyles } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { addCard } from "../redux/actions";
 
 import Card from "./Card";
+import ColumnTitle from "./ColumnTitle";
+import AddCard from "./AddCard";
 
 const useStyles = makeStyles((theme) => ({
   column: {
-    minWidth: 350,
     width: 350,
-    position: "relative",
-    height: "100%",
-    padding: " 8px 8px 8px 0",
+    height: "fit-content",
+    padding: "12px 8px",
     boxSizing: "border-box",
-    background: "grey",
+    background: "lightgray",
+    boxSizing: "border-box",
+    flexShrink: 0,
   },
   dropabbleColumn: {
-    width: "100%",
-    padding: 8,
-    boxSizing: "border-box",
-    transition: "all 200ms linear",
-    scrollbarWidth: "none",
-    height: "auto",
-    gap: 6,
+    minHeight: 50,
     display: "flex",
     flexDirection: "column",
+    maxHeight: "100%",
+    height: "auto",
   },
 }));
 
 const Column = ({ id, cards, index, title }) => {
   const classes = useStyles();
+
+  const dispatch = useDispatch();
+
+  const handleOnAddCard = (title, columnId) => {
+    dispatch(addCard({ title, columnId }));
+  };
+
   return (
     <Draggable draggableId={id} index={index}>
       {(provided, { isDragging: isDraggingColumn }) => {
@@ -40,8 +47,7 @@ const Column = ({ id, cards, index, title }) => {
             }}
             className={classes.column}
           >
-            <div {...provided.dragHandleProps}>{title}</div>
-
+            <ColumnTitle {...provided.dragHandleProps} title={title} />
             <Droppable droppableId={id} type="COLUMN">
               {(provided, snapshot) => {
                 return (
@@ -51,12 +57,21 @@ const Column = ({ id, cards, index, title }) => {
                     className={classes.dropabbleColumn}
                   >
                     {cards?.map((card, index) => {
-                      return <Card {...{ card, index }} key={card.id} />;
+                      return (
+                        <Card
+                          {...{
+                            card,
+                            index,
+                          }}
+                          key={card.id}
+                        />
+                      );
                     })}
                   </div>
                 );
               }}
             </Droppable>
+            <AddCard handleOnAddCard={handleOnAddCard} columnId={id} />
           </div>
         );
       }}

@@ -10,6 +10,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     gap: 8,
     height: "100%",
+    flexWrap: "nowrap",
+    overflowY: "hidden",
   },
 }));
 

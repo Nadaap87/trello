@@ -42,6 +42,20 @@ export const appReducer = (state = initialState, action) => {
           return { ...state };
         }
       }
+
+      return { ...state };
+    }
+    case types.ADD_CARD: {
+      const { title, columnId } = action.payload;
+
+      const board = state.boards.find(
+        (board) => board.id === state.currentBoard
+      );
+
+      const column = board.columns.find((col) => col.id === columnId);
+      const newCard = utils.createCard(title);
+
+      column.cards.push(newCard);
       return { ...state };
     }
     default: {

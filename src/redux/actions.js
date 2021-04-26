@@ -19,3 +19,8 @@ export const onDragEnd = (payload) => ({
   type: types.ON_DRAG_END,
   payload,
 });
+
+export const addCard = (payload) => ({
+  type: types.ADD_CARD,
+  payload,
+});

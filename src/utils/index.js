@@ -17,19 +17,109 @@ const createBoard = () => ({
       cards: [
         {
           id: uuid(),
-          text: "This is a card",
+          title: "This is a card",
           img:
             "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
         },
         {
           id: uuid(),
-          text: "This is a card 2",
+          title: "This is a card 2",
           img:
             "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
         },
         {
           id: uuid(),
-          text: "This is a card 3",
+          title: "This is a card 3",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 2",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 3",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 2",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 3",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 2",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 3",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 2",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 3",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 2",
+          img:
+            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+        },
+        {
+          id: uuid(),
+          title: "This is a card 3",
           img:
             "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
         },
@@ -38,6 +128,12 @@ const createBoard = () => ({
     { id: uuid(), title: "In Progress", cards: [] },
     { id: uuid(), title: "Done", cards: [] },
   ],
+});
+
+export const createCard = (title) => ({
+  id: uuid(),
+  title,
+  img: "",
 });
 
 export const getStateFromLocalStorage = () =>

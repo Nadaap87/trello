@@ -10,15 +10,13 @@ import {
 const useStyles = makeStyles((theme) => ({
   card: {
     height: "auto",
-    width: "100%",
     background: "ivory",
     padding: 6,
     boxSizing: "border-box",
     textAlign: "left",
+    marginBottom: 8,
   },
-  cardMedia: {
-    width: "100%",
-  },
+  cardMedia: {},
 }));
 
 const Card = ({ card, index }) => {
@@ -44,7 +42,7 @@ const Card = ({ card, index }) => {
               alt=""
             />
             <CardContent>
-              <Typography>{card.text}</Typography>
+              <Typography>{card.title}</Typography>
             </CardContent>
           </MaterialCard>
         );
