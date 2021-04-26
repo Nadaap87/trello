@@ -41,7 +41,6 @@ const Card = ({ card, index }) => {
               image={card.img}
               className={classes.cardMedia}
               title=""
-              height="140"
               alt=""
             />
             <CardContent>

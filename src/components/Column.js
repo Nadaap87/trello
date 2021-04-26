@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     padding: 8,
     boxSizing: "border-box",
-    overflowY: "auto",
     transition: "all 200ms linear",
     scrollbarWidth: "none",
     height: "auto",
