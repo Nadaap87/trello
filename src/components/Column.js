@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
   dropabbleColumn: {
     marginTop: 10,
     boxSizing: "border-box",
-    minHeight: 30,
     overflowY: "auto",
     width: "100%",
     flex: 1,
