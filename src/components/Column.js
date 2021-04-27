@@ -1,7 +1,7 @@
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import { makeStyles } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { addCard, deleteCard } from "../redux/actions";
+import { addCard, deleteCard, editCard } from "../redux/actions";
 
 import Card from "./Card";
 import ColumnHeader from "./ColumnHeader";
@@ -55,6 +55,10 @@ const Column = ({
   const handleDeleteCard = (columnId) => (cardId) =>
     dispatch(deleteCard({ columnId, cardId }));
 
+  const handleEditCard = (columnId) => (newCard) => {
+    dispatch(editCard({ columnId, newCard }));
+  };
+
   return (
     <Draggable draggableId={id} index={index}>
       {(provided, { isDragging: isDraggingColumn }) => {
@@ -91,6 +95,7 @@ const Column = ({
                             }}
                             key={card.id}
                             onDelete={handleDeleteCard(id)}
+                            onSave={handleEditCard(id)}
                           />
                         );
                       })}

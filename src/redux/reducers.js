@@ -84,6 +84,16 @@ export const appReducer = (state = initialState, action) => {
       column.cards = newCards;
       return { ...state };
     }
+    case types.EDIT_CARD: {
+      const { columnId, newCard } = action.payload;
+      const board = state.boards[state.currentBoard];
+      const column = board.columns.find((col) => col.id === columnId);
+      const card = column.cards.find((card) => card.id === newCard.id);
+
+      Object.assign(card, newCard);
+
+      return { ...state };
+    }
     default: {
       return state;
     }

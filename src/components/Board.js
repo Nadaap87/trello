@@ -52,7 +52,7 @@ const Board = ({ id, columns }) => {
               className={classes.columns}
             >
               {columns.map(({ id, cards, title }, index) => (
-                <div className={classes.columnContainer}>
+                <div className={classes.columnContainer} key={id}>
                   <Column
                     {...{
                       index,

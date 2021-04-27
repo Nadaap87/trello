@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Draggable } from "react-beautiful-dnd";
 import {
   makeStyles,
@@ -10,6 +12,8 @@ import {
 
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
+
+import EditCard from "./EditCard";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -33,17 +37,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Card = ({ card, index, ref, onDelete }) => {
+const Card = ({ card, index, onDelete, onSave }) => {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOnDelete = () => {
     onDelete(card.id);
   };
+
+  const openEdit = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+
+  const handleOnSave = (newCard) => {
+    setAnchorEl(null);
+    onSave(newCard);
+  };
+
   return (
-    <Draggable draggableId={card.id} index={index}>
-      {(provided, snapshot) => {
-        return (
-          <div ref={ref}>
+    <>
+      <Draggable draggableId={card.id} index={index}>
+        {(provided, snapshot) => {
+          return (
             <MaterialCard
               ref={provided.innerRef}
               {...provided.draggableProps}
@@ -64,7 +79,7 @@ const Card = ({ card, index, ref, onDelete }) => {
                 <Typography className={classes.title}>{card.title}</Typography>
                 <div>
                   <div className={classes.actions}>
-                    <IconButton size="small">
+                    <IconButton size="small" onClick={openEdit}>
                       <EditIcon fontSize="small" />
                     </IconButton>
                     <IconButton size="small" onClick={handleOnDelete}>
@@ -74,10 +89,18 @@ const Card = ({ card, index, ref, onDelete }) => {
                 </div>
               </CardContent>
             </MaterialCard>
-          </div>
-        );
-      }}
-    </Draggable>
+          );
+        }}
+      </Draggable>
+      {anchorEl && (
+        <EditCard
+          anchorEl={anchorEl}
+          onClose={() => setAnchorEl(null)}
+          card={card}
+          onSave={handleOnSave}
+        />
+      )}
+    </>
   );
 };
 
