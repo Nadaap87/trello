@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     maxHeight: "calc(100% - 20px)",
     flexDirection: "column",
+    scrollbarWidth: "none",
   },
   column: {
     flex: 1,

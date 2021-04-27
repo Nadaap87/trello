@@ -11,7 +11,6 @@ export const appReducer = (state = initialState, action) => {
 
       // DROP TYPE BOARD
       if (type === "BOARD") {
-        const { droppableId } = destination;
         const [moved] = board.columns.splice(source.index, 1);
         board.columns.splice(destination.index, 0, moved);
       }
