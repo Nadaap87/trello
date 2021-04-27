@@ -2,7 +2,7 @@ import { Droppable } from "react-beautiful-dnd";
 import { makeStyles } from "@material-ui/core";
 
 import { useDispatch } from "react-redux";
-import { addColumn, deleteColumn } from "../redux/actions";
+import { addColumn, deleteColumn, editColumn } from "../redux/actions";
 
 import Column from "./Column";
 import AddColumn from "./AddColumn";
@@ -33,8 +33,13 @@ const Board = ({ id, columns }) => {
     dispatch(addColumn({ title }));
   };
 
-  const handleOnDeleteColumn = (columnId) => {
+  const handleOnDeleteColumn = (columnId) => () => {
     dispatch(deleteColumn({ columnId }));
+  };
+
+  const handleOnEditColumn = (columnId) => (title) => {
+    dispatch(editColumn({ title, columnId }));
+    console.log(columnId, title);
   };
 
   return (
@@ -50,7 +55,14 @@ const Board = ({ id, columns }) => {
               {columns.map(({ id, cards, title }, index) => (
                 <div className={classes.columnContainer}>
                   <Column
-                    {...{ index, id, cards, title, handleOnDeleteColumn }}
+                    {...{
+                      index,
+                      id,
+                      cards,
+                      title,
+                      handleOnDeleteColumn,
+                      handleOnEditColumn,
+                    }}
                     key={id}
                   />
                 </div>

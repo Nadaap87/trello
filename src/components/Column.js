@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { addCard } from "../redux/actions";
 
 import Card from "./Card";
-import ColumnTitle from "./ColumnTitle";
+import ColumnHeader from "./ColumnHeader";
 import AddCard from "./AddCard";
 
 const useStyles = makeStyles((theme) => ({
@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 10,
     flexDirection: "column",
     justifyContent: "space-between",
+    scrollbarWidth: "none",
   },
   dropabbleColumn: {
     boxSizing: "border-box",
@@ -35,7 +36,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Column = ({ id, cards, index, title, handleOnDeleteColumn }) => {
+const Column = ({
+  id,
+  cards,
+  index,
+  title,
+  handleOnDeleteColumn,
+  handleOnEditColumn,
+}) => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
@@ -56,10 +64,11 @@ const Column = ({ id, cards, index, title, handleOnDeleteColumn }) => {
             }}
             className={classes.columnWrapper}
           >
-            <ColumnTitle
+            <ColumnHeader
               {...provided.dragHandleProps}
               title={title}
-              onDelete={() => handleOnDeleteColumn(id)}
+              onDelete={handleOnDeleteColumn(id)}
+              onEdit={handleOnEditColumn(id)}
             />
             <div className={classes.column}>
               <Droppable droppableId={id} type="COLUMN">

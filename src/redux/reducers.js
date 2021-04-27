@@ -79,6 +79,16 @@ export const appReducer = (state = initialState, action) => {
 
       return { ...state };
     }
+    case types.EDIT_COLUMN: {
+      const { columnId, title } = action.payload;
+      const board = state.boards.find(
+        (board) => board.id === state.currentBoard
+      );
+      const column = board.columns.find((col) => col.id === columnId);
+      column.title = title;
+
+      return { ...state };
+    }
     default: {
       return state;
     }
