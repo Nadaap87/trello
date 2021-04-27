@@ -14,6 +14,6 @@ After all dependencies installed start the project using the following command
 
 `npm start`
 
-Open your borwser on https://localhost:3000
+Open your browser on https://localhost:3000
 
 ### Enjoy
