@@ -6,7 +6,9 @@ const rootReducer = combineReducers({
   app: appReducer,
 });
 
-export const store = createStore(rootReducer, utils.getStateFromLocalStorage());
+const state = utils.getStateFromLocalStorage() || {};
+
+export const store = createStore(rootReducer, state);
 
 store.subscribe(() => {
   utils.setStateToLocalStorage(store.getState());

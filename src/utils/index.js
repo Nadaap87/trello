@@ -25,31 +25,13 @@ const createBoard = () => ({
           id: uuid(),
           title: "This is a card 2",
           img:
-            "https://cdn.pixabay.com/photo/2021/01/09/20/33/sunset-5903426_960_720.jpg",
+            "https://cdn.pixabay.com/photo/2021/04/13/05/20/beach-6174684_960_720.jpg",
         },
         {
           id: uuid(),
           title: "This is a card 3",
           img:
-            "https://cdn.pixabay.com/photo/2021/01/09/20/33/sunset-5903426_960_720.jpg",
-        },
-        {
-          id: uuid(),
-          title: "This is a card",
-          img:
-            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
-        },
-        {
-          id: uuid(),
-          title: "This is a card 2",
-          img:
-            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
-        },
-        {
-          id: uuid(),
-          title: "This is a card 3",
-          img:
-            "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png",
+            "https://cdn.pixabay.com/photo/2019/07/10/22/23/beach-4329694_960_720.jpg",
         },
       ],
     },

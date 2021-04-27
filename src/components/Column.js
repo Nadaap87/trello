@@ -8,32 +8,24 @@ import ColumnHeader from "./ColumnHeader";
 import AddCard from "./AddCard";
 
 const useStyles = makeStyles((theme) => ({
-  columnWrapper: {
+  column: {
     backgroundColor: "#e3e3e3",
     position: "relative",
     padding: 10,
     display: "inline-flex",
     height: "auto",
-    maxHeight: "calc(100% - 20px)",
+    maxHeight: "calc(100% - 0px)",
     flexDirection: "column",
     scrollbarWidth: "none",
-  },
-  column: {
-    flex: 1,
-    overflowY: "auto",
+    boxSizing: "border-box",
     maxWidth: 250,
     width: 250,
-    overflowX: "hidden",
-    alignSelf: "center",
-    maxHeight: "90vh",
-    marginTop: 10,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    scrollbarWidth: "none",
   },
   dropabbleColumn: {
+    marginTop: 10,
     boxSizing: "border-box",
     minHeight: 30,
+    overflowY: "auto",
   },
 }));
 
@@ -69,7 +61,7 @@ const Column = ({
             style={{
               ...provided.draggableProps.style,
             }}
-            className={classes.columnWrapper}
+            className={classes.column}
           >
             <ColumnHeader
               {...provided.dragHandleProps}
@@ -77,34 +69,32 @@ const Column = ({
               onDelete={handleOnDeleteColumn(id)}
               onEdit={handleOnEditColumn(id)}
             />
-            <div className={classes.column}>
-              <Droppable droppableId={id} type="COLUMN">
-                {(provided, { isDraggingOver }) => {
-                  return (
-                    <div
-                      {...provided.droppableProps}
-                      ref={provided.innerRef}
-                      className={classes.dropabbleColumn}
-                    >
-                      {cards?.map((card, index) => {
-                        return (
-                          <Card
-                            {...{
-                              card,
-                              index,
-                            }}
-                            key={card.id}
-                            onDelete={handleDeleteCard(id)}
-                            onSave={handleEditCard(id)}
-                          />
-                        );
-                      })}
-                      {provided.placeholder}
-                    </div>
-                  );
-                }}
-              </Droppable>
-            </div>
+            <Droppable droppableId={id} type="COLUMN">
+              {(provided, { isDraggingOver }) => {
+                return (
+                  <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    className={classes.dropabbleColumn}
+                  >
+                    {cards?.map((card, index) => {
+                      return (
+                        <Card
+                          {...{
+                            card,
+                            index,
+                          }}
+                          key={card.id}
+                          onDelete={handleDeleteCard(id)}
+                          onSave={handleEditCard(id)}
+                        />
+                      );
+                    })}
+                    {provided.placeholder}
+                  </div>
+                );
+              }}
+            </Droppable>
             <AddCard handleOnAddCard={handleOnAddCard(id)} />
           </div>
         );

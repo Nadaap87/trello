@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     boxSizing: "border-box",
     width: "100%",
-    overflow: "hidden",
+    overflowX: "auto",
   },
 }));
 

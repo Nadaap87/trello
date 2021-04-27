@@ -12,11 +12,10 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     display: "inline-block",
     verticalAlign: "top",
-    whiteSpace: "normal",
     padding: "0 8px",
+    boxSizing: "border-box",
   },
   columns: {
-    overflowX: "auto",
     display: "flex",
     height: "100%",
     overflowY: "hidden",

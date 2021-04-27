@@ -13,20 +13,21 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: "border-box",
     display: "flex",
     alignItems: "center",
-    height: 48,
-    width: "100%",
     justifyContent: "space-between",
+    textAlign: "left",
+  },
+  titleWrapper: {
+    flex: 1,
+    display: "flex",
   },
   title: {
-    flex: 1,
-    textAlign: "left",
+    wordBreak: "break-all",
   },
   input: {
     background: "white",
     maxHeight: "100%",
     boxSizing: "border-box",
     paddingLeft: 8,
-    height: 28,
     borderRadius: 4,
   },
 }));
@@ -54,9 +55,15 @@ const ColumnTitle = ({ title, onDelete, onEdit, ...rest }) => {
   return (
     <div className={classes.header} {...rest}>
       {!isInputOpen ? (
-        <Typography onClick={toggleTitleEditor} className={classes.title}>
-          {title}
-        </Typography>
+        <div className={classes.titleWrapper}>
+          <Typography
+            className={classes.title}
+            component="span"
+            onClick={toggleTitleEditor}
+          >
+            {title}
+          </Typography>
+        </div>
       ) : (
         <ClickAwayListener onClickAway={handleSubmit}>
           <form onSubmit={handleSubmit}>

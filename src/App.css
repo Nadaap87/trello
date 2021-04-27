@@ -7,4 +7,9 @@
 
 *::-webkit-scrollbar {
   width: 0;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.6);
 }

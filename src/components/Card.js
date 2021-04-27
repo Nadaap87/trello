@@ -21,8 +21,6 @@ const useStyles = makeStyles((theme) => ({
     background: "ivory",
     textAlign: "left",
     marginBottom: 8,
-    whiteSpace: "normal",
-    wordBreak: "break-all",
   },
   cardMedia: { "> img": { height: "auto", maxHeight: 150 } },
   cardContent: {
