@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     overflowY: "hidden",
   },
-  columnPlaceholder: {
-    marginLeft: 4,
+  addColumn: {
+    marginLeft: theme.spacing(0.5),
   },
 }));
 
@@ -65,7 +65,7 @@ const Board = ({ id, columns }) => {
                 </div>
               ))}
               {provided.placeholder}
-              <div className={classes.columnPlaceholder}>
+              <div className={classes.addColumn}>
                 <AddColumn handleOnAddColumn={handleOnAddColumn} />
               </div>
             </div>

@@ -15,18 +15,18 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     display: "flex",
     flexDirection: "column",
-    gap: 8,
+    gap: theme.spacing(1),
   },
   input: {
-    padding: 8,
+    padding: theme.spacing(1),
     border: "1px solid lightgray",
-    margin: 3,
+    margin: theme.spacing(0.5),
     boxSizing: "border-box",
-    borderRadius: 4,
+    borderRadius: theme.spacing(0.5),
   },
   actions: {
     display: "flex",
-    padding: 6,
+    padding: theme.spacing(1),
     boxSizing: "border-box",
     zIndex: 9999,
   },
@@ -54,6 +54,7 @@ const EditCard = ({ anchorEl, onClose, card, onSave }) => {
   };
 
   const handleOnSave = () => {
+    if (!title.trim()) return;
     onSave({
       ...card,
       title,

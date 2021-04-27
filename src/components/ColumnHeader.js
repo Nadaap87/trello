@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
     background: "white",
     maxHeight: "100%",
     boxSizing: "border-box",
-    paddingLeft: 8,
-    borderRadius: 4,
+    paddingLeft: theme.spacing(1),
+    borderRadius: theme.spacing(0.5),
   },
 }));
 
