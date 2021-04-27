@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
   column: {
     backgroundColor: "#e3e3e3",
     position: "relative",
-    padding: 10,
     display: "inline-flex",
     height: "auto",
     maxHeight: "calc(100% - 0px)",
@@ -20,12 +19,16 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: "border-box",
     maxWidth: 250,
     width: 250,
+    margin: "0 4px",
+    padding: 8,
   },
   dropabbleColumn: {
     marginTop: 10,
     boxSizing: "border-box",
     minHeight: 30,
     overflowY: "auto",
+    width: "100%",
+    flex: 1,
   },
 }));
 

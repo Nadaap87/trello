@@ -12,15 +12,14 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     display: "inline-block",
     verticalAlign: "top",
-    padding: "0 8px",
-    boxSizing: "border-box",
   },
   columns: {
     display: "flex",
     height: "100%",
     overflowY: "hidden",
-    scrollbarWidth: "none",
-    flexWrap: "nowrap",
+  },
+  columnPlaceholder: {
+    marginLeft: 4,
   },
 }));
 
@@ -66,7 +65,7 @@ const Board = ({ id, columns }) => {
                 </div>
               ))}
               {provided.placeholder}
-              <div className={classes.columnContainer}>
+              <div className={classes.columnPlaceholder}>
                 <AddColumn handleOnAddColumn={handleOnAddColumn} />
               </div>
             </div>
