@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     height: "auto",
     background: "ivory",
     textAlign: "left",
-    marginBottom: 8,
+    marginBottom: theme.spacing(1),
   },
   cardMedia: { "> img": { height: "auto", maxHeight: 150 } },
   cardContent: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   title: { flex: 1 },
   actions: {
     display: "flex",
-    gap: 3,
+    gap: theme.spacing(0.5),
   },
 }));
 

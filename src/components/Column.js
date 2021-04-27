@@ -46,10 +46,10 @@ const Column = ({
   const handleOnAddCard = (columnId) => (title) =>
     dispatch(addCard({ title, columnId }));
 
-  const handleDeleteCard = (columnId) => (cardId) =>
+  const handleOnDeleteCard = (columnId) => (cardId) =>
     dispatch(deleteCard({ columnId, cardId }));
 
-  const handleEditCard = (columnId) => (newCard) => {
+  const handleOnEditCard = (columnId) => (newCard) => {
     dispatch(editCard({ columnId, newCard }));
   };
 
@@ -87,8 +87,8 @@ const Column = ({
                             index,
                           }}
                           key={card.id}
-                          onDelete={handleDeleteCard(id)}
-                          onSave={handleEditCard(id)}
+                          onDelete={handleOnDeleteCard(id)}
+                          onSave={handleOnEditCard(id)}
                         />
                       );
                     })}
