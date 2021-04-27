@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Paper, InputBase, Button, IconButton } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import { makeStyles, fade } from "@material-ui/core/styles";
@@ -19,7 +19,6 @@ const useStyle = makeStyles((theme) => ({
     justifySelf: "flex-start",
   },
   confirm: {
-    margin: theme.spacing(0, 1, 1, 1),
     width: "100%",
     display: "flex",
     margin: "6px 0",
@@ -27,7 +26,13 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export default function InputCard({ setOpen, content, onConfirm }) {
+export default function InputCard({
+  setOpen,
+  content,
+  onConfirm,
+  placeholder,
+  ...rest
+}) {
   const classes = useStyle();
   const [title, setTitle] = useState("");
 
@@ -35,7 +40,8 @@ export default function InputCard({ setOpen, content, onConfirm }) {
     setTitle(e.target.value);
   };
 
-  const handleConfirm = () => {
+  const hanldeOnSubmit = (e) => {
+    e.preventDefault();
     if (!title.trim()) return;
     onConfirm(title);
     setOpen(false);
@@ -43,31 +49,29 @@ export default function InputCard({ setOpen, content, onConfirm }) {
   };
 
   return (
-    <div>
-      <div>
-        <Paper className={classes.card}>
-          <InputBase
-            onChange={handleOnChange}
-            multiline
-            fullWidth
-            rows={3}
-            inputProps={{
-              className: classes.input,
-            }}
-            value={title}
-          />
-        </Paper>
-      </div>
+    <form onSubmit={hanldeOnSubmit}>
+      <Paper className={classes.card}>
+        <InputBase
+          onChange={handleOnChange}
+          fullWidth
+          inputProps={{
+            className: classes.input,
+          }}
+          placeholder={placeholder}
+          value={title}
+          {...rest}
+        />
+      </Paper>
       <div className={classes.confirm}>
         <div>
-          <Button className={classes.btnConfirm} onClick={handleConfirm}>
+          <Button type="submit" className={classes.btnConfirm}>
             {content}
           </Button>
         </div>
-        <IconButton onClick={() => setOpen(false)}>
+        <IconButton onClick={() => setOpen(false)} size="small">
           <ClearIcon />
         </IconButton>
       </div>
-    </div>
+    </form>
   );
 }

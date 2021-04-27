@@ -5,8 +5,7 @@ import InputCard from "./InputCard";
 
 const useStyle = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    marginTop: theme.spacing(1),
+    width: 250,
   },
   add: {
     padding: theme.spacing(1, 1, 1, 2),
@@ -18,24 +17,23 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const AddCard = ({ handleOnAddCard }) => {
+const AddColumn = ({ handleOnAddColumn }) => {
   const classes = useStyle();
   const [open, setOpen] = useState(false);
 
   const handleOnConfirm = (title) => {
-    handleOnAddCard(title);
+    handleOnAddColumn(title);
   };
 
   return (
     <div className={classes.root}>
       <Collapse in={open}>
         <InputCard
-          content={"Add Card"}
+          multiline={false}
+          content={"Add Column"}
           setOpen={setOpen}
           onConfirm={handleOnConfirm}
-          placeholder={"Add Title"}
-          multiline
-          rows={3}
+          placeholder={"Column Title"}
         />
       </Collapse>
       <Collapse in={!open}>
@@ -44,11 +42,11 @@ const AddCard = ({ handleOnAddCard }) => {
           elevation={0}
           onClick={() => setOpen(!open)}
         >
-          <Typography>+ Add a Card</Typography>
+          <Typography>+ Add a Column</Typography>
         </Paper>
       </Collapse>
     </div>
   );
 };
 
-export default AddCard;
+export default AddColumn;

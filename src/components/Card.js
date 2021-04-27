@@ -11,40 +11,46 @@ const useStyles = makeStyles((theme) => ({
   card: {
     height: "auto",
     background: "ivory",
-    padding: 6,
-    boxSizing: "border-box",
     textAlign: "left",
     marginBottom: 8,
+    whiteSpace: "normal",
+    wordBreak: "break-all",
   },
-  cardMedia: {},
+  cardMedia: { "> img": { height: "auto", maxHeight: 150 } },
+  cardContent: {
+    boxSizing: "border-box",
+  },
 }));
 
-const Card = ({ card, index }) => {
+const Card = ({ card, index, ref }) => {
   const classes = useStyles();
+
   return (
     <Draggable draggableId={card.id} index={index}>
       {(provided, snapshot) => {
         return (
-          <MaterialCard
-            ref={provided.innerRef}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            style={{
-              ...provided.draggableProps.style,
-            }}
-            className={classes.card}
-          >
-            <CardMedia
-              component="img"
-              image={card.img}
-              className={classes.cardMedia}
-              title=""
-              alt=""
-            />
-            <CardContent>
-              <Typography>{card.title}</Typography>
-            </CardContent>
-          </MaterialCard>
+          <div ref={ref}>
+            <MaterialCard
+              ref={provided.innerRef}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              style={{
+                ...provided.draggableProps.style,
+              }}
+              className={classes.card}
+            >
+              <CardMedia
+                component="img"
+                image={card.img}
+                className={classes.cardMedia}
+                title=""
+                alt=""
+              />
+              <CardContent className={classes.cardContent}>
+                <Typography>{card.title}</Typography>
+              </CardContent>
+            </MaterialCard>
+          </div>
         );
       }}
     </Draggable>

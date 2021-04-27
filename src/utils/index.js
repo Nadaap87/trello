@@ -136,6 +136,12 @@ export const createCard = (title) => ({
   img: "",
 });
 
+export const createColumn = (title) => ({
+  id: uuid(),
+  title,
+  cards: [],
+});
+
 export const getStateFromLocalStorage = () =>
   JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 

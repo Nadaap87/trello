@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext } from "react-beautiful-dnd";
@@ -7,7 +6,7 @@ import Board from "../components/Board";
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
     boxSizing: "border-box",
     width: "100%",
     overflow: "hidden",
@@ -18,23 +17,17 @@ const Main = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const { boards } = useSelector((state) => state.app);
+  // *** NOT HADNLING BOARDS ***
+  const { boards, currentBoard } = useSelector((state) => state.app);
+  const board = boards.find((board) => board.id === currentBoard);
 
-  // NOT HADNLING BOARDS - DEFAULT IS INDEX 0
-  const currentBoard = boards[0];
-
-  const onDragEndHandler = (result) => {
-    return result.destination && dispatch(actions.onDragEnd(result));
-  };
+  const handleOnDragEnd = (result) =>
+    result.destination && dispatch(actions.onDragEnd(result));
 
   return (
     <main className={classes.main}>
-      <DragDropContext onDragEnd={onDragEndHandler}>
-        <Board
-          id={currentBoard.id}
-          columns={currentBoard.columns}
-          onDragEndHandler={onDragEndHandler}
-        />
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Board id={board.id} columns={board.columns} />
       </DragDropContext>
     </main>
   );

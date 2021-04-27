@@ -58,6 +58,27 @@ export const appReducer = (state = initialState, action) => {
       column.cards.push(newCard);
       return { ...state };
     }
+
+    case types.ADD_COLUMN: {
+      const { title } = action.payload;
+      const board = state.boards.find(
+        (board) => board.id === state.currentBoard
+      );
+      const newColumn = utils.createColumn(title);
+      board.columns.push(newColumn);
+
+      return { ...state };
+    }
+    case types.DELETE_COLUMN: {
+      const { columnId } = action.payload;
+      const board = state.boards.find(
+        (board) => board.id === state.currentBoard
+      );
+      const newColumns = board.columns.filter((col) => col.id !== columnId);
+      board.columns = newColumns;
+
+      return { ...state };
+    }
     default: {
       return state;
     }

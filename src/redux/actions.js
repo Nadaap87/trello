@@ -24,3 +24,13 @@ export const addCard = (payload) => ({
   type: types.ADD_CARD,
   payload,
 });
+
+export const deleteCard = (payload) => ({
+  type: types.DELETE_CARD,
+  payload,
+});
+
+export const editCard = (payload) => ({
+  type: types.EDIT_CARD,
+  payload,
+});

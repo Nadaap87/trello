@@ -1,4 +1,4 @@
-import { makeStyles, Typography, Input, IconButton } from "@material-ui/core";
+import { makeStyles, Typography, IconButton } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,12 +14,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ColumnTitle = ({ title, ...rest }) => {
+const ColumnTitle = ({ title, onDelete, ...rest }) => {
   const classes = useStyles();
   return (
     <div className={classes.header} {...rest}>
       <Typography className={classes.title}>{title}</Typography>
-      <IconButton size="small">
+      <IconButton size="small" onClick={onDelete}>
         <DeleteIcon fontSize="small" />
       </IconButton>
     </div>

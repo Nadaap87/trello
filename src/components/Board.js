@@ -1,40 +1,69 @@
 import { Droppable } from "react-beautiful-dnd";
 import { makeStyles } from "@material-ui/core";
 
+import { useDispatch } from "react-redux";
+import { addColumn, deleteColumn } from "../redux/actions";
+
 import Column from "./Column";
+import AddColumn from "./AddColumn";
 
 const useStyles = makeStyles((theme) => ({
-  board: {
-    width: "100%",
+  columnContainer: {
+    height: "100%",
+    display: "inline-block",
+    verticalAlign: "top",
+    whiteSpace: "normal",
+    padding: "0 8px",
+  },
+  columns: {
     overflowX: "auto",
     display: "flex",
-    gap: 8,
     height: "100%",
-    flexWrap: "nowrap",
     overflowY: "hidden",
+    scrollbarWidth: "none",
+    flexWrap: "nowrap",
   },
 }));
 
 const Board = ({ id, columns }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleOnAddColumn = (title) => {
+    dispatch(addColumn({ title }));
+  };
+
+  const handleOnDeleteColumn = (columnId) => {
+    dispatch(deleteColumn({ columnId }));
+  };
 
   return (
-    <Droppable droppableId={id} type="BOARD" direction="horizontal">
-      {(provided) => {
-        return (
-          <div
-            className={classes.board}
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {columns.map(({ id, cards, title }, index) => (
-              <Column {...{ index, id, cards, title }} key={id} />
-            ))}
-            {provided.placeholder}
-          </div>
-        );
-      }}
-    </Droppable>
+    <>
+      <Droppable droppableId={id} type="BOARD" direction="horizontal">
+        {(provided) => {
+          return (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              className={classes.columns}
+            >
+              {columns.map(({ id, cards, title }, index) => (
+                <div className={classes.columnContainer}>
+                  <Column
+                    {...{ index, id, cards, title, handleOnDeleteColumn }}
+                    key={id}
+                  />
+                </div>
+              ))}
+              {provided.placeholder}
+              <div className={classes.columnContainer}>
+                <AddColumn handleOnAddColumn={handleOnAddColumn} />
+              </div>
+            </div>
+          );
+        }}
+      </Droppable>
+    </>
   );
 };
 
