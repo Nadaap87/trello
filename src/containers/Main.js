@@ -19,7 +19,7 @@ const Main = () => {
 
   // *** NOT HADNLING BOARDS ***
   const { boards, currentBoard } = useSelector((state) => state.app);
-  const board = boards.find((board) => board.id === currentBoard);
+  const board = boards[currentBoard];
 
   const handleOnDragEnd = (result) =>
     result.destination && dispatch(actions.onDragEnd(result));

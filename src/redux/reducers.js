@@ -7,18 +7,16 @@ export const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ON_DRAG_END: {
       const { destination, source, type } = action.payload;
+      const board = state.boards[state.currentBoard];
+
       // DROP TYPE BOARD
       if (type === "BOARD") {
         const { droppableId } = destination;
-        const board = state.boards.find((board) => board.id === droppableId);
         const [moved] = board.columns.splice(source.index, 1);
         board.columns.splice(destination.index, 0, moved);
       }
       // DROP TYPE COLUMN
       else if (type === "COLUMN") {
-        const board = state.boards.find(
-          (board) => board.id === state.currentBoard
-        );
         // DIFFERENT COLUMNS
         if (source.droppableId !== destination.droppableId) {
           const sourceCards = board.columns.find(
@@ -47,11 +45,7 @@ export const appReducer = (state = initialState, action) => {
     }
     case types.ADD_CARD: {
       const { title, columnId } = action.payload;
-
-      const board = state.boards.find(
-        (board) => board.id === state.currentBoard
-      );
-
+      const board = state.boards[state.currentBoard];
       const column = board.columns.find((col) => col.id === columnId);
       const newCard = utils.createCard(title);
 
@@ -61,9 +55,7 @@ export const appReducer = (state = initialState, action) => {
 
     case types.ADD_COLUMN: {
       const { title } = action.payload;
-      const board = state.boards.find(
-        (board) => board.id === state.currentBoard
-      );
+      const board = state.boards[state.currentBoard];
       const newColumn = utils.createColumn(title);
       board.columns.push(newColumn);
 
@@ -71,9 +63,7 @@ export const appReducer = (state = initialState, action) => {
     }
     case types.DELETE_COLUMN: {
       const { columnId } = action.payload;
-      const board = state.boards.find(
-        (board) => board.id === state.currentBoard
-      );
+      const board = state.boards[state.currentBoard];
       const newColumns = board.columns.filter((col) => col.id !== columnId);
       board.columns = newColumns;
 
@@ -81,9 +71,7 @@ export const appReducer = (state = initialState, action) => {
     }
     case types.EDIT_COLUMN: {
       const { columnId, title } = action.payload;
-      const board = state.boards.find(
-        (board) => board.id === state.currentBoard
-      );
+      const board = state.boards[state.currentBoard];
       const column = board.columns.find((col) => col.id === columnId);
       column.title = title;
 
@@ -91,9 +79,7 @@ export const appReducer = (state = initialState, action) => {
     }
     case types.DELETE_CARD: {
       const { columnId, cardId } = action.payload;
-      const board = state.boards.find(
-        (board) => board.id === state.currentBoard
-      );
+      const board = state.boards[state.currentBoard];
       const column = board.columns.find((col) => col.id === columnId);
       const newCards = column.cards.filter((card) => card.id !== cardId);
       column.cards = newCards;

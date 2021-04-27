@@ -48,14 +48,11 @@ const Column = ({
 
   const dispatch = useDispatch();
 
-  const handleOnAddCard = (columnId) => (title) => {
+  const handleOnAddCard = (columnId) => (title) =>
     dispatch(addCard({ title, columnId }));
-  };
 
-  const handleDeleteCard = (columnId) => (cardId) => {
-    console.log(cardId, columnId);
+  const handleDeleteCard = (columnId) => (cardId) =>
     dispatch(deleteCard({ columnId, cardId }));
-  };
 
   return (
     <Draggable draggableId={id} index={index}>
