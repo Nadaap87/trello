@@ -39,7 +39,6 @@ const Board = ({ id, columns }) => {
 
   const handleOnEditColumn = (columnId) => (title) => {
     dispatch(editColumn({ title, columnId }));
-    console.log(columnId, title);
   };
 
   return (

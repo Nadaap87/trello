@@ -44,7 +44,7 @@ const ColumnTitle = ({ title, onDelete, onEdit, ...rest }) => {
   const handleSubmit = () => {
     setInputValue("");
     setIsInputOpen(false);
-    onEdit(inputValue);
+    if (inputValue.trim() !== title.trim()) onEdit(inputValue);
   };
 
   const onChange = (e) => {

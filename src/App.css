@@ -4,8 +4,3 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
-
-.App > * {
-  scrollbar-width: none !important;
-  -webkit-scrollbar-width: none;
-}

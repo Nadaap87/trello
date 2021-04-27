@@ -89,6 +89,16 @@ export const appReducer = (state = initialState, action) => {
 
       return { ...state };
     }
+    case types.DELETE_CARD: {
+      const { columnId, cardId } = action.payload;
+      const board = state.boards.find(
+        (board) => board.id === state.currentBoard
+      );
+      const column = board.columns.find((col) => col.id === columnId);
+      const newCards = column.cards.filter((card) => card.id !== cardId);
+      column.cards = newCards;
+      return { ...state };
+    }
     default: {
       return state;
     }

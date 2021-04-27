@@ -5,7 +5,11 @@ import {
   CardMedia,
   CardContent,
   Typography,
+  IconButton,
 } from "@material-ui/core";
+
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -19,12 +23,22 @@ const useStyles = makeStyles((theme) => ({
   cardMedia: { "> img": { height: "auto", maxHeight: 150 } },
   cardContent: {
     boxSizing: "border-box",
+    display: "flex",
+    padding: theme.spacing(1),
+  },
+  title: { flex: 1 },
+  actions: {
+    display: "flex",
+    gap: 3,
   },
 }));
 
-const Card = ({ card, index, ref }) => {
+const Card = ({ card, index, ref, onDelete }) => {
   const classes = useStyles();
 
+  const handleOnDelete = () => {
+    onDelete(card.id);
+  };
   return (
     <Draggable draggableId={card.id} index={index}>
       {(provided, snapshot) => {
@@ -47,7 +61,17 @@ const Card = ({ card, index, ref }) => {
                 alt=""
               />
               <CardContent className={classes.cardContent}>
-                <Typography>{card.title}</Typography>
+                <Typography className={classes.title}>{card.title}</Typography>
+                <div>
+                  <div className={classes.actions}>
+                    <IconButton size="small">
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton size="small" onClick={handleOnDelete}>
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                  </div>
+                </div>
               </CardContent>
             </MaterialCard>
           </div>
