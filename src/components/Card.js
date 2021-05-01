@@ -22,13 +22,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     marginBottom: theme.spacing(1),
   },
-  cardMedia: { "> img": { height: "auto", maxHeight: 150 } },
+  cardMedia: { "& > img": { height: "auto", maxHeight: 150 } },
   cardContent: {
     boxSizing: "border-box",
     display: "flex",
     padding: theme.spacing(1),
   },
-  title: { flex: 1 },
+  title: { flex: 1, wordBreak: "break-all", whiteSpace: "normal" },
   actions: {
     display: "flex",
     gap: theme.spacing(0.5),
@@ -39,13 +39,11 @@ const Card = ({ card, index, onDelete, onSave }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleOnDelete = () => {
-    onDelete(card.id);
-  };
+  const handleOnDelete = () => onDelete(card.id);
 
-  const openEdit = (e) => {
-    setAnchorEl(e.currentTarget);
-  };
+  const handleOpenEdit = (e) => setAnchorEl(e.currentTarget);
+
+  const handleCloseEdit = () => setAnchorEl(null);
 
   const handleOnSave = (newCard) => {
     setAnchorEl(null);
@@ -77,7 +75,7 @@ const Card = ({ card, index, onDelete, onSave }) => {
                 <Typography className={classes.title}>{card.title}</Typography>
                 <div>
                   <div className={classes.actions}>
-                    <IconButton size="small" onClick={openEdit}>
+                    <IconButton size="small" onClick={handleOpenEdit}>
                       <EditIcon fontSize="small" />
                     </IconButton>
                     <IconButton size="small" onClick={handleOnDelete}>
@@ -93,7 +91,7 @@ const Card = ({ card, index, onDelete, onSave }) => {
       {anchorEl && (
         <EditCard
           anchorEl={anchorEl}
-          onClose={() => setAnchorEl(null)}
+          onClose={handleCloseEdit}
           card={card}
           onSave={handleOnSave}
         />

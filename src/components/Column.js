@@ -12,10 +12,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#e3e3e3",
     position: "relative",
     display: "inline-flex",
-    height: "auto",
-    maxHeight: "calc(100% - 0px)",
+    maxHeight: "100%",
     flexDirection: "column",
-    scrollbarWidth: "none",
     boxSizing: "border-box",
     maxWidth: 250,
     width: 250,
@@ -32,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Column = ({
-  id,
+  id: columnId,
   cards,
   index,
   title,
@@ -49,13 +47,12 @@ const Column = ({
   const handleOnDeleteCard = (columnId) => (cardId) =>
     dispatch(deleteCard({ columnId, cardId }));
 
-  const handleOnEditCard = (columnId) => (newCard) => {
+  const handleOnEditCard = (columnId) => (newCard) =>
     dispatch(editCard({ columnId, newCard }));
-  };
 
   return (
-    <Draggable draggableId={id} index={index}>
-      {(provided, { isDragging: isDraggingColumn }) => {
+    <Draggable draggableId={columnId} index={index}>
+      {(provided) => {
         return (
           <div
             {...provided.draggableProps}
@@ -68,11 +65,11 @@ const Column = ({
             <ColumnHeader
               {...provided.dragHandleProps}
               title={title}
-              onDelete={handleOnDeleteColumn(id)}
-              onEdit={handleOnEditColumn(id)}
+              onDelete={handleOnDeleteColumn}
+              onEdit={handleOnEditColumn}
             />
-            <Droppable droppableId={id} type="COLUMN">
-              {(provided, { isDraggingOver }) => {
+            <Droppable droppableId={columnId} type="COLUMN">
+              {(provided) => {
                 return (
                   <div
                     {...provided.droppableProps}
@@ -85,10 +82,10 @@ const Column = ({
                           {...{
                             card,
                             index,
+                            onDelete: handleOnDeleteCard(columnId),
+                            onSave: handleOnEditCard(columnId),
                           }}
                           key={card.id}
-                          onDelete={handleOnDeleteCard(id)}
-                          onSave={handleOnEditCard(id)}
                         />
                       );
                     })}
@@ -97,7 +94,7 @@ const Column = ({
                 );
               }}
             </Droppable>
-            <AddCard handleOnAddCard={handleOnAddCard(id)} />
+            <AddCard handleOnAddCard={handleOnAddCard(columnId)} />
           </div>
         );
       }}

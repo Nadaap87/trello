@@ -23,25 +23,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Board = ({ id, columns }) => {
+const Board = ({ id: boardId, columns }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const handleOnAddColumn = (title) => {
-    dispatch(addColumn({ title }));
-  };
+  const handleOnAddColumn = (title) => dispatch(addColumn({ title }));
 
-  const handleOnDeleteColumn = (columnId) => () => {
+  const handleOnDeleteColumn = (columnId) => () =>
     dispatch(deleteColumn({ columnId }));
-  };
 
-  const handleOnEditColumn = (columnId) => (title) => {
+  const handleOnEditColumn = (columnId) => (title) =>
     dispatch(editColumn({ title, columnId }));
-  };
 
   return (
     <>
-      <Droppable droppableId={id} type="BOARD" direction="horizontal">
+      <Droppable droppableId={boardId} type="BOARD" direction="horizontal">
         {(provided) => {
           return (
             <div
@@ -49,18 +45,18 @@ const Board = ({ id, columns }) => {
               ref={provided.innerRef}
               className={classes.columns}
             >
-              {columns.map(({ id, cards, title }, index) => (
-                <div className={classes.columnContainer} key={id}>
+              {columns.map(({ id: columnId, cards, title }, index) => (
+                <div className={classes.columnContainer} key={columnId}>
                   <Column
                     {...{
                       index,
-                      id,
+                      id: columnId,
                       cards,
                       title,
-                      handleOnDeleteColumn,
-                      handleOnEditColumn,
+                      handleOnDeleteColumn: handleOnDeleteColumn(columnId),
+                      handleOnEditColumn: handleOnEditColumn(columnId),
                     }}
-                    key={id}
+                    key={columnId}
                   />
                 </div>
               ))}

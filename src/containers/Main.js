@@ -18,8 +18,9 @@ const Main = () => {
   const dispatch = useDispatch();
 
   // *** NOT HADNLING BOARDS ***
-  const { boards, currentBoard } = useSelector((state) => state.app);
-  const board = boards[currentBoard];
+  const { boards, currentBoard, board = boards[currentBoard] } = useSelector(
+    (state) => state.app
+  );
 
   const handleOnDragEnd = (result) =>
     result.destination && dispatch(actions.onDragEnd(result));

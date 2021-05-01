@@ -16,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(1),
+    maxWidth: 400,
   },
+  image: { maxHeight: 150 },
   input: {
     padding: theme.spacing(1),
     border: "1px solid lightgray",
@@ -78,7 +80,14 @@ const EditCard = ({ anchorEl, onClose, card, onSave }) => {
         onClose={onClose}
         classes={{ root: classes.root, paper: classes.paper }}
       >
-        {img && <img src={img} alt="Not found" height={150} />}
+        {img && (
+          <img
+            src={img}
+            alt="Not found"
+            height={150}
+            className={classes.image}
+          />
+        )}
         <InputBase
           value={img}
           onChange={onImgURLChange}
